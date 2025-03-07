@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Подать заявку: нашёл свою вещь</h2>
+<p>Вы хотите оставить заявку на предмет: <strong>{{ item.name }}</strong></p>
+
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-primary">Отправить заявку</button>
+</form>
+{% endblock %}

@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Admin Panel - Manage Items</h2>
+
+<h3>Lost Items</h3>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Location</th>
+            <th>Date Lost</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for item in lost_items %}
+        <tr>
+            <td>{{ item.name }}</td>
+            <td>{{ item.location }}</td>
+            <td>{{ item.date_lost }}</td>
+            <td>
+                <a href="{% url 'delete_lost_item' item.id %}" class="btn btn-danger btn-sm">Delete</a>
+            </td>
+        </tr>
+        {% empty %}
+        <tr><td colspan="4">No lost items available.</td></tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<h3>Found Items</h3>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Location</th>
+            <th>Date Found</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for item in found_items %}
+        <tr>
+            <td>{{ item.name }}</td>
+            <td>{{ item.location }}</td>
+            <td>{{ item.date_found }}</td>
+            <td>
+                <a href="{% url 'delete_found_item' item.id %}" class="btn btn-danger btn-sm">Delete</a>
+            </td>
+        </tr>
+        {% empty %}
+        <tr><td colspan="4">No found items available.</td></tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
